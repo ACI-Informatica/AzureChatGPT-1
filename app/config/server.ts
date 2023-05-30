@@ -3,6 +3,9 @@ import md5 from "spark-md5";
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
+      AzureDomainName: string;
+      AzureDeploymentName: string;
+      AOAIToken: string;
       OPENAI_API_KEY?: string;
       CODE?: string;
       BASE_URL?: string;
@@ -44,5 +47,8 @@ export const getServerSideConfig = () => {
     isVercel: !!process.env.VERCEL,
     hideUserApiKey: !!process.env.HIDE_USER_API_KEY,
     enableGPT4: !process.env.DISABLE_GPT4,
+    azureDomainName: process.env.AzureDomainName,
+    azureDeploymentName: process.env.AzureDeploymentName,
+    aOAIToken: process.env.AOAIToken,
   };
 };

@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, HTMLProps, useRef } from "react";
-
+import { getServerSideConfig } from "../config/server";
 import styles from "./settings.module.scss";
 
 import ResetIcon from "../icons/reload.svg";
@@ -218,6 +218,15 @@ export function Settings() {
   const updateConfig = config.update;
   const resetConfig = config.reset;
   const chatStore = useChatStore();
+  const serverConfig = getServerSideConfig();
+  const accessStore = useAccessStore();
+  const { azureDomainName, azureDeploymentName, aOAIToken } = serverConfig;
+  if (azureDomainName && azureDeploymentName && aOAIToken) {
+    accessStore.switchAOAI(true);
+    accessStore.updateDomainName(azureDomainName);
+    accessStore.updateDeployName(azureDeploymentName);
+    accessStore.updateAOAIToken(aOAIToken);
+  }
 
   const updateStore = useUpdateStore();
   const [checkingUpdate, setCheckingUpdate] = useState(false);
@@ -253,7 +262,6 @@ export function Settings() {
     });
   }
 
-  const accessStore = useAccessStore();
   const enabledAccessControl = useMemo(
     () => accessStore.enabledAccessControl(),
     // eslint-disable-next-line react-hooks/exhaustive-deps
