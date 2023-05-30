@@ -32,6 +32,9 @@ RUN apk add proxychains-ng
 ENV PROXY_URL=""
 ENV OPENAI_API_KEY=""
 ENV CODE=""
+ENV AzureDomainName=""
+ENV AzureDeploymentName=""
+ENV AOAIToken=""
 
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./

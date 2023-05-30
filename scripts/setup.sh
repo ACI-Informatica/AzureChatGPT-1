@@ -59,7 +59,9 @@ yarn install
 read -p "Enter OPENAI_API_KEY: " OPENAI_API_KEY
 read -p "Enter CODE: " CODE
 read -p "Enter PORT: " PORT
-
+read -p "Enter PORT: " AzureDomainName
+read -p "Enter PORT: " AzureDeploymentName
+read -p "Enter PORT: " AOAIToken
 # Build and run the project using the environment variables
-OPENAI_API_KEY=$OPENAI_API_KEY CODE=$CODE PORT=$PORT yarn build
-OPENAI_API_KEY=$OPENAI_API_KEY CODE=$CODE PORT=$PORT yarn start
+AzureDomainName=$AzureDomainName AzureDeploymentName=$AzureDeploymentName AOAIToken=$AOAIToken OPENAI_API_KEY=$OPENAI_API_KEY CODE=$CODE PORT=$PORT yarn build
+AzureDomainName=$AzureDomainName AzureDeploymentName=$AzureDeploymentName AOAIToken=$AOAIToken OPENAI_API_KEY=$OPENAI_API_KEY CODE=$CODE PORT=$PORT yarn start
